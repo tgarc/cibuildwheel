@@ -8,3 +8,4 @@ matrix:
 script:
   - pip install .
   - python ./run_tests.py
+  - ls -la wheelhouse
