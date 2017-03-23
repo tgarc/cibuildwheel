@@ -15,4 +15,3 @@ script:
       sudo pip install .
       sudo python ./run_tests.py
     fi
-  - ls -la wheelhouse
