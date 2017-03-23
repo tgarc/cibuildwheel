@@ -7,5 +7,11 @@ matrix:
 
 script:
   - pip install .
-  - python ./run_tests.py
+  - |
+    if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then
+      python ./run_tests.py
+    else
+      # linux test requires root to clean up the wheelhouse (docker runs as root)
+      sudo python ./run_tests.py
+    fi
   - ls -la wheelhouse
