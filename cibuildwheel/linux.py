@@ -35,7 +35,7 @@ def build(project_dir, package_name, output_dir, test_command, test_requires, be
 
     platforms = [
         ('manylinux1_x86_64', 'quay.io/pypa/manylinux1_x86_64'),
-        ('manylinux1_i686', 'quay.io/pypa/manylinux1_i686'),
+        ('manylinux1_i686', 'quay.io/pypa/manylinux1_i686 linux32'),
     ]
 
     for platform_tag, docker_image in platforms:
