@@ -52,7 +52,7 @@ def build(project_dir, package_name, output_dir, test_command, test_requires, be
                 fi
 
                 # install the package first to take care of dependencies
-                "$PYBIN/pip" install .
+                PKG_CONFIG_PATH="$PKG_CONFIG_PATH":/usr/lib/pkgconfig "$PYBIN/pip" install .
 
                 "$PYBIN/pip" wheel --no-deps . -w /tmp/linux_wheels
             done
