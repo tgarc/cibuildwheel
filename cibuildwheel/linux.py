@@ -102,8 +102,9 @@ def build(project_dir, package_name, output_dir, test_command, test_requires, be
                 '--rm',
                 '-i',
                 '-v', '%s:/project' % os.path.abspath(project_dir),
-                '-v', '%s:/output' % os.path.abspath(output_dir),
-                docker_image,
+                '-v', '%s:/output' % os.path.abspath(output_dir)]
+                + [ '-e %s' % kv for kv in os.environ.get('CIBW_ENVIRONMENT', '').split() ]
+                + [ docker_image,
                 '/bin/bash'],
             stdin=subprocess.PIPE, universal_newlines=True)
 
