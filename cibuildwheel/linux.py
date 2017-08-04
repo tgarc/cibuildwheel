@@ -64,7 +64,7 @@ def build(project_dir, package_name, output_dir, test_command, test_requires, be
                 fi
 
                 # Build that wheel
-                "$PYBIN/pip" wheel . -w /tmp/built_wheel --no-deps
+                "$PYBIN/pip" wheel . -w /tmp/built_wheel --no-deps {pip_opts}
                 built_wheel=(/tmp/built_wheel/*.whl)
 
                 # Delocate the wheel
@@ -106,6 +106,7 @@ def build(project_dir, package_name, output_dir, test_command, test_requires, be
             before_build=shlex_quote(
                 prepare_command(before_build, python='python', pip='pip') if before_build else ''
             ),
+            pip_opts=os.environ.get('CIBW_PIP_OPTS', ''),
         )
 
         docker_process = subprocess.Popen([

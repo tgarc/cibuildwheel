@@ -67,7 +67,7 @@ def build(project_dir, package_name, output_dir, test_command, test_requires, be
             shell(shlex.split(before_build_prepared), env=env)
 
         # build the wheel
-        shell([pip, 'wheel', project_dir, '-w', '/tmp/built_wheel', '--no-deps'], env=env)
+        shell([pip, 'wheel', project_dir, '-w', '/tmp/built_wheel', '--no-deps'] + shlex.split(env.get('CIBW_PIP_OPTS', '')), env=env)
         built_wheel = glob('/tmp/built_wheel/*.whl')[0]
 
         if built_wheel.endswith('none-any.whl'):
